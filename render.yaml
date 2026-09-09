@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: feedcheck-ai-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install --upgrade pip && pip install -r backend/requirements.txt"
+    startCommand: "uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: MODEL_PATH
+        value: backend/app/models/fbsi_mobilenetv2.keras
+      - key: CLASS_INDICES_PATH
+        value: backend/app/models/class_indices.json
+      - key: HOST
+        value: 0.0.0.0
