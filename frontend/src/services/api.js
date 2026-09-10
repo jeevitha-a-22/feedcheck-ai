@@ -86,12 +86,16 @@ export const api = {
         throw new Error('Please select or upload a valid sample image file.');
       }
 
-      formData.append('moisture', payload.moisture ?? '65.0');
-      formData.append('pH', payload.pH ?? '3.9');
-      formData.append('temperature', payload.temperature ?? '22.0');
+      formData.append('moisture', payload.moisture);
+      formData.append('pH', payload.pH);
+      formData.append('temperature', payload.temperature);
       if (payload.feed_type_id) formData.append('feed_type_id', payload.feed_type_id);
       if (payload.farm_location) formData.append('farm_location', payload.farm_location);
       if (payload.batch_id) formData.append('batch_id', payload.batch_id);
+      if (payload.cutLength) formData.append('cut_length', payload.cutLength);
+      if (payload.odor) formData.append('odor', payload.odor);
+      if (payload.color) formData.append('color', payload.color);
+      if (payload.storage) formData.append('storage', payload.storage);
 
       const response = await client.post('/analyze', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }

@@ -43,7 +43,7 @@ export const SensorInputs = ({
           </p>
         </div>
         <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200">
-          {t('sensor_inputs.target_moisture', 'Target')}: {selectedFeedType?.idealMoisture} {t('sensor_inputs.moisture_unit', 'moisture')}
+          {t('sensor_inputs.target_moisture', 'Target')}: {selectedFeedType?.idealMoisture || '62-68%'} {t('sensor_inputs.moisture_unit', 'moisture')}
         </span>
       </div>
 
@@ -56,9 +56,9 @@ export const SensorInputs = ({
           step="0.1"
           min="30"
           max="85"
-          value={draft.moisture}
+          value={draft.moisture || ''}
           onChange={(e) => updateDraft('moisture', e.target.value)}
-          placeholder="65.0"
+          placeholder={t('sensor_inputs.moisture_placeholder', 'e.g. 65.0')}
           unit="%"
           icon={Droplets}
           helperText={`${t('sensor_inputs.ideal', 'Ideal')}: ${selectedFeedType?.idealMoisture || '62-68%'}`}
@@ -73,9 +73,9 @@ export const SensorInputs = ({
           step="0.05"
           min="3.0"
           max="8.0"
-          value={draft.pH}
+          value={draft.pH || ''}
           onChange={(e) => updateDraft('pH', e.target.value)}
-          placeholder="3.9"
+          placeholder={t('sensor_inputs.ph_placeholder', 'e.g. 3.9')}
           unit="pH"
           icon={TestTubes}
           helperText={`${t('sensor_inputs.ideal', 'Ideal')}: ${selectedFeedType?.idealPH || '3.8-4.2'}`}
@@ -90,9 +90,9 @@ export const SensorInputs = ({
           step="0.5"
           min="5"
           max="70"
-          value={draft.temperature}
+          value={draft.temperature || ''}
           onChange={(e) => updateDraft('temperature', e.target.value)}
-          placeholder="22"
+          placeholder={t('sensor_inputs.temp_placeholder', 'e.g. 22')}
           unit="°C"
           icon={Thermometer}
           helperText={t('sensor_inputs.temp_helper', 'Normal: < 28°C (>35°C heating)')}
@@ -106,9 +106,9 @@ export const SensorInputs = ({
           label={t('sensor_inputs.cut_length_label', 'Cut / Chop Length')}
           id="cutLength"
           type="number"
-          value={draft.cutLength}
+          value={draft.cutLength || ''}
           onChange={(e) => updateDraft('cutLength', e.target.value)}
-          placeholder="15"
+          placeholder={t('sensor_inputs.cut_length_placeholder', 'e.g. 15')}
           unit="mm"
           icon={Scissors}
           helperText={t('sensor_inputs.cut_length_helper', 'Theoretical length of cut (TLC)')}
@@ -118,9 +118,10 @@ export const SensorInputs = ({
         <Select
           label={t('sensor_inputs.storage_label', 'Silo / Storage Structure')}
           id="storage"
-          value={draft.storage}
+          value={draft.storage || ''}
           onChange={(e) => updateDraft('storage', e.target.value)}
           options={storageOptions}
+          placeholder={t('sensor_inputs.storage_placeholder', 'Select storage structure')}
           icon={Warehouse}
           helperText={t('sensor_inputs.storage_helper', 'Storage system used on farm')}
         />
@@ -131,9 +132,10 @@ export const SensorInputs = ({
         <Select
           label={t('sensor_inputs.odor_label', 'Odor / Aroma Observation')}
           id="odor"
-          value={draft.odor}
+          value={draft.odor || ''}
           onChange={(e) => updateDraft('odor', e.target.value)}
           options={odorOptions}
+          placeholder={t('sensor_inputs.odor_placeholder', 'Select odor observation')}
           icon={Wind}
           helperText={t('sensor_inputs.odor_helper', 'Fermentation odor characteristics')}
         />
@@ -142,9 +144,10 @@ export const SensorInputs = ({
         <Select
           label={t('sensor_inputs.color_label', 'Color Tone & Visual Traits')}
           id="color"
-          value={draft.color}
+          value={draft.color || ''}
           onChange={(e) => updateDraft('color', e.target.value)}
           options={colorOptions}
+          placeholder={t('sensor_inputs.color_placeholder', 'Select color / visual traits')}
           icon={Palette}
           helperText={t('sensor_inputs.color_helper', 'Color tone & visible mold appearance')}
         />

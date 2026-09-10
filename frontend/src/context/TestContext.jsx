@@ -6,18 +6,18 @@ export const TestContext = createContext(null);
 export const FeedTestContext = TestContext;
 
 const DEFAULT_DRAFT = {
-  feed_type_id: 'corn_silage',
+  feed_type_id: '',
   batch_id: '',
-  farm_location: 'North Bunker Lot 1',
-  moisture: '64.5',
-  pH: '3.9',
-  temperature: '22',
-  cutLength: '15',
-  odor: 'pleasant_acidic',
-  color: 'olive_green',
-  storage: 'Bunker Silo',
+  farm_location: '',
+  moisture: '',
+  pH: '',
+  temperature: '',
+  cutLength: '',
+  odor: '',
+  color: '',
+  storage: '',
   imageFile: null,
-  imagePreviewUrl: '/assets/corn_silage.jpg'
+  imagePreviewUrl: ''
 };
 
 export const TestProvider = ({ children }) => {
@@ -34,7 +34,7 @@ export const TestProvider = ({ children }) => {
   const [summary, setSummary] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [selectedFeedType, setSelectedFeedType] = useState(FEED_TYPES[0]);
+  const [selectedFeedType, setSelectedFeedType] = useState(null);
 
   // Load history & summary from service on startup
   useEffect(() => {
@@ -44,7 +44,7 @@ export const TestProvider = ({ children }) => {
   // Update selected feed type metadata whenever draft.feed_type_id changes
   useEffect(() => {
     const found = FEED_TYPES.find(f => f.id === draft.feed_type_id);
-    if (found) setSelectedFeedType(found);
+    setSelectedFeedType(found || null);
   }, [draft.feed_type_id]);
 
   const refreshHistory = async () => {
@@ -66,10 +66,7 @@ export const TestProvider = ({ children }) => {
   };
 
   const resetDraft = () => {
-    setDraft({
-      ...DEFAULT_DRAFT,
-      batch_id: `BUNKER-${new Date().getFullYear()}-${Math.floor(100 + Math.random() * 900)}`
-    });
+    setDraft(DEFAULT_DRAFT);
     setCurrentResult(null);
   };
 

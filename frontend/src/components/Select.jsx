@@ -36,18 +36,20 @@ export const Select = ({
         )}
         <select
           id={selectId}
-          value={value}
+          value={value || ''}
           onChange={onChange}
           disabled={disabled}
-          className={`w-full py-3 px-3.5 pr-10 text-sm bg-transparent text-slate-900 font-semibold focus:outline-none appearance-none cursor-pointer disabled:opacity-50 ${Icon ? 'pl-2' : ''}`}
+          className={`w-full py-3 px-3.5 pr-10 text-sm bg-transparent font-semibold focus:outline-none appearance-none cursor-pointer disabled:opacity-50 ${
+            value ? 'text-slate-900' : 'text-slate-400'
+          } ${Icon ? 'pl-2' : ''}`}
           {...props}
         >
-          {placeholder && <option value="" disabled>{placeholder}</option>}
+          {placeholder && <option value="" className="text-slate-400">{placeholder}</option>}
           {options.map((opt) => {
             const val = typeof opt === 'string' ? opt : opt.value;
             const labelText = typeof opt === 'string' ? opt : opt.label;
             return (
-              <option key={val} value={val}>
+              <option key={val} value={val} className="text-slate-900 font-medium">
                 {labelText}
               </option>
             );

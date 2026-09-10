@@ -57,18 +57,24 @@ async def analyze_sample(
 
     # 2. Validate Measurements
     ph_raw = ph if ph is not None else pH
+    if ph_raw is None or str(ph_raw).strip() == '':
+        raise HTTPException(status_code=400, detail="Please enter silage pH.")
     try:
-        ph_val = float(ph_raw) if ph_raw is not None and ph_raw != '' else 3.9
+        ph_val = float(ph_raw)
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid pH reading. Expected numeric value (e.g. 3.9).")
 
+    if moisture is None or str(moisture).strip() == '':
+        raise HTTPException(status_code=400, detail="Please enter moisture content.")
     try:
-        moisture_val = float(moisture) if moisture is not None and moisture != '' else 65.0
+        moisture_val = float(moisture)
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid moisture value. Expected numeric percentage (e.g. 65.0).")
 
+    if temperature is None or str(temperature).strip() == '':
+        raise HTTPException(status_code=400, detail="Please enter core temperature.")
     try:
-        temp_val = float(temperature) if temperature is not None and temperature != '' else 22.0
+        temp_val = float(temperature)
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid temperature value. Expected numeric reading in °C (e.g. 22).")
 

@@ -49,22 +49,22 @@ export const NewTestPage = () => {
     }
 
     if (!draft.imagePreviewUrl && !draft.imageFile) {
-      setFormError(t('new_test.error_image', 'Please upload a feed sample image or select a demo sample photo.'));
+      setFormError(t('new_test.error_image', 'Please upload a sample image.'));
       return;
     }
 
-    if (!draft.moisture || parseFloat(draft.moisture) <= 0) {
-      setFormError(t('new_test.error_moisture', 'Please enter a valid moisture percentage (e.g. 65.0%).'));
+    if (!draft.moisture || draft.moisture.toString().trim() === '' || isNaN(parseFloat(draft.moisture)) || parseFloat(draft.moisture) <= 0) {
+      setFormError(t('new_test.error_moisture', 'Please enter moisture content.'));
       return;
     }
 
-    if (!draft.pH || parseFloat(draft.pH) <= 0) {
-      setFormError(t('new_test.error_ph', 'Please enter a valid pH reading (e.g. 3.9).'));
+    if (!draft.pH || draft.pH.toString().trim() === '' || isNaN(parseFloat(draft.pH)) || parseFloat(draft.pH) <= 0) {
+      setFormError(t('new_test.error_ph', 'Please enter silage pH.'));
       return;
     }
 
-    if (!draft.temperature || parseFloat(draft.temperature) <= 0) {
-      setFormError(t('new_test.error_temp', 'Please enter a valid core temperature (e.g. 22°C).'));
+    if (!draft.temperature || draft.temperature.toString().trim() === '' || isNaN(parseFloat(draft.temperature)) || parseFloat(draft.temperature) <= 0) {
+      setFormError(t('new_test.error_temp', 'Please enter core temperature.'));
       return;
     }
 
@@ -144,9 +144,6 @@ export const NewTestPage = () => {
                   key={type.id}
                   onClick={() => {
                     updateDraft('feed_type_id', type.id);
-                    if (!draft.imageFile && type.image) {
-                      updateDraft('imagePreviewUrl', type.image);
-                    }
                   }}
                   className={`p-4 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
                     isSelected
