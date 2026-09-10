@@ -22,7 +22,7 @@ export const WhyEvidenceSection = ({
         {evidence.length > 0 ? (
           evidence.map((point, index) => {
             const isWarning = quality === 'poor' || (typeof point === 'object' && point.type === 'warning');
-            const title = typeof point === 'object' ? point.title : `Agronomic Factor #${index + 1}`;
+            const title = typeof point === 'object' ? point.title : `${t('evidence.factor_prefix', 'Agronomic Factor')} #${index + 1}`;
             const detail = typeof point === 'object' ? point.detail : point;
 
             return (

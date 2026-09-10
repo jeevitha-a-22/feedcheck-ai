@@ -89,7 +89,7 @@ export const TestHistoryCard = ({ test, onDelete }) => {
                 e.stopPropagation();
                 navigate(`/verify/${test.id}`);
               }}
-              title="View Batch Verification QR"
+              title={t('qr.view_batch_qr', 'View Batch Verification QR')}
               className="p-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:text-brand-600 hover:border-brand-300 hover:bg-brand-50/50 transition-colors"
             >
               <QrCode className="w-4 h-4" />

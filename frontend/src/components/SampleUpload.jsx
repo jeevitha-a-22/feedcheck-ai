@@ -100,7 +100,7 @@ export const SampleUpload = ({
           ) : (
             <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-slate-300">
               <ImageOff className="w-10 h-10 text-slate-500 mb-2" />
-              <p className="text-xs font-semibold">Feed sample preview unavailable</p>
+              <p className="text-xs font-semibold">{t('sample_upload.preview_unavailable', 'Feed sample preview unavailable')}</p>
             </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90" />

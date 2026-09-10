@@ -76,10 +76,10 @@ export const ResultCard = ({
               </h5>
               <p className="text-xs text-slate-600 mt-0.5">
                 {badgeVariant === 'emerald'
-                  ? 'No secondary clostridial or yeast fermentation detected.'
+                  ? t('quality.risk_desc_low', 'No secondary clostridial or yeast fermentation detected.')
                   : badgeVariant === 'amber'
-                  ? 'Mild aerobic warming or moisture variation present.'
-                  : 'Active mold sporulation or secondary butyric fermentation.'}
+                  ? t('quality.risk_desc_medium', 'Mild aerobic warming or moisture variation present.')
+                  : t('quality.risk_desc_high', 'Active mold sporulation or secondary butyric fermentation.')}
               </p>
             </div>
           </div>

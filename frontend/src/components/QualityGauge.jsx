@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const QualityGauge = ({
   score = 85,
@@ -6,6 +7,7 @@ export const QualityGauge = ({
   size = 'md',
   className = ''
 }) => {
+  const { t } = useLanguage();
   const radius = 54;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (score / 100) * circumference;
@@ -58,7 +60,7 @@ export const QualityGauge = ({
             {score}
           </span>
           <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-            Index / 100
+            {t('quality.index_100', 'Index / 100')}
           </span>
         </div>
       </div>
@@ -69,7 +71,7 @@ export const QualityGauge = ({
           {grade}
         </div>
         <p className="text-xs text-slate-500 mt-1 font-medium">
-          Feed Quality Index (FQI)
+          {t('quality.fqi', 'Feed Quality Index (FQI)')}
         </p>
       </div>
     </div>

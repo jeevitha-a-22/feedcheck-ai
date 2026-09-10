@@ -221,11 +221,11 @@ export const VerifyPage = () => {
                   {record.fbsi_score ? record.fbsi_score.replace('_', ' ').toUpperCase() : 'FBSI Index'}
                 </span>
                 <span className="text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-200">
-                  {formattedConfidence} Confidence
+                  {formattedConfidence} {t('home.confidence_suffix', 'Confidence')}
                 </span>
               </div>
               <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
-                {visualIndicators[0] || 'Visual bunk residue evaluation via MobileNetV2 transfer learning model.'}
+                {visualIndicators[0] || t('verify.default_visual_note', 'Visual bunk residue evaluation via MobileNetV2 transfer learning model.')}
               </p>
             </div>
 
@@ -244,11 +244,11 @@ export const VerifyPage = () => {
                   {gradeLabel}
                 </Badge>
                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/80 border border-current">
-                  Risk Level: {formattedRisk}
+                  {t('quality.risk_label', 'Risk Classification')}: {formattedRisk}
                 </span>
               </div>
               <p className="text-xs text-slate-700 mt-1.5 leading-relaxed font-medium">
-                Screening Score: <strong>{record.score || 90}/100</strong> • Result Classification: <strong>{(record.screening_result || quality).toUpperCase()}</strong>
+                {t('summary.score', 'Score')}: <strong>{record.score || 90}/100</strong> • {t('verify.result_classification', 'Result Classification')}: <strong>{getQualityLabel(record.screening_result || quality, t)}</strong>
               </p>
             </div>
           </div>

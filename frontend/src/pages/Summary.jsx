@@ -38,7 +38,7 @@ export const SummaryPage = () => {
               size="sm"
               variant="outline"
               icon={FileSpreadsheet}
-              onClick={() => alert('Exporting Farm Silage Analytics Report (.CSV)...')}
+              onClick={() => alert(t('summary.export_alert', 'Exporting Farm Silage Analytics Report (.CSV)...'))}
               className="text-xs"
             >
               {t('summary.export_csv', 'Export CSV')}
@@ -130,7 +130,7 @@ export const SummaryPage = () => {
               <Badge size="sm" variant="emerald">{goodCount} {t('summary.batches', 'Batches')}</Badge>
             </div>
             <div className="mt-2 text-2xl font-black text-emerald-700 font-sans">{pctGood}%</div>
-            <p className="text-[11px] text-emerald-800/80 mt-1">Excellent lactic fermentation, ready for lactating herd.</p>
+            <p className="text-[11px] text-emerald-800/80 mt-1">{t('summary.grade_a_desc', 'Excellent lactic fermentation, ready for lactating herd.')}</p>
           </div>
 
           <div className="p-3.5 rounded-xl bg-amber-50/60 border border-amber-200/80">
@@ -139,7 +139,7 @@ export const SummaryPage = () => {
               <Badge size="sm" variant="amber">{moderateCount} {t('summary.batches', 'Batches')}</Badge>
             </div>
             <div className="mt-2 text-2xl font-black text-amber-700 font-sans">{pctModerate}%</div>
-            <p className="text-[11px] text-amber-800/80 mt-1">Mild aerobic warming or moisture variation. Monitor face.</p>
+            <p className="text-[11px] text-amber-800/80 mt-1">{t('summary.grade_b_desc', 'Mild aerobic warming or moisture variation. Monitor face.')}</p>
           </div>
 
           <div className="p-3.5 rounded-xl bg-rose-50/60 border border-rose-200/80">
@@ -148,7 +148,7 @@ export const SummaryPage = () => {
               <Badge size="sm" variant="rose">{poorCount} {t('summary.batches', 'Batches')}</Badge>
             </div>
             <div className="mt-2 text-2xl font-black text-rose-700 font-sans">{pctPoor}%</div>
-            <p className="text-[11px] text-rose-800/80 mt-1">Elevated spoilage risk. Restrict feeding to high-risk cows.</p>
+            <p className="text-[11px] text-rose-800/80 mt-1">{t('summary.grade_c_desc', 'Elevated spoilage risk. Restrict feeding to high-risk cows.')}</p>
           </div>
         </div>
       </Card>
@@ -168,6 +168,7 @@ export const SummaryPage = () => {
             const badgeColor = getQualityVariant(q);
             const rawFeed = test.feed_type || test.feedTypeName || 'Silage Sample';
             const feedName = test.feed_type_id ? t(`feed_types.${test.feed_type_id}`, rawFeed) : rawFeed;
+            const storageName = test.storage ? t(`sensor_inputs.storage_types.${test.storage.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`, test.storage) : t('sensor_inputs.storage_types.bunker_silo', 'Bunker Silo');
 
             return (
               <div key={test.id} className="py-3 flex items-center justify-between gap-3 text-sm">
@@ -177,13 +178,13 @@ export const SummaryPage = () => {
                   </div>
                   <div>
                     <h5 className="font-bold text-slate-800">{test.farm_location || test.farmLocation || 'Main Bunker'}</h5>
-                    <p className="text-xs text-slate-500">{feedName} • {test.storage || 'Bunker Silo'}</p>
+                    <p className="text-xs text-slate-500">{feedName} • {storageName}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-mono font-bold text-slate-700 hidden sm:inline">
-                    Score: {test.score || 90}/100
+                    {t('summary.score', 'Score')}: {test.score || 90}/100
                   </span>
                   <Badge size="sm" variant={badgeColor}>
                     {gradeText}

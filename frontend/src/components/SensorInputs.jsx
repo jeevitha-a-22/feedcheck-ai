@@ -12,6 +12,24 @@ export const SensorInputs = ({
 }) => {
   const { t } = useLanguage();
 
+  const storageOptions = [
+    { value: 'Bunker Silo', label: t('sensor_inputs.storage_types.bunker_silo', 'Bunker Silo') },
+    { value: 'Drive-over Silage Pile', label: t('sensor_inputs.storage_types.drive_over_pile', 'Drive-over Silage Pile') },
+    { value: 'Ag-Bag / Silo Tube', label: t('sensor_inputs.storage_types.ag_bag', 'Ag-Bag / Silo Tube') },
+    { value: 'Wrapped Round Bales', label: t('sensor_inputs.storage_types.wrapped_bales', 'Wrapped Round Bales') },
+    { value: 'Concrete Stave / Tower Silo', label: t('sensor_inputs.storage_types.tower_silo', 'Concrete Stave / Tower Silo') }
+  ];
+
+  const odorOptions = ODOR_PROFILES.map((prof) => ({
+    value: prof.value,
+    label: t(`sensor_inputs.odor_profiles.${prof.value}`, prof.label)
+  }));
+
+  const colorOptions = COLOR_PROFILES.map((prof) => ({
+    value: prof.value,
+    label: t(`sensor_inputs.color_profiles.${prof.value}`, prof.label)
+  }));
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -25,7 +43,7 @@ export const SensorInputs = ({
           </p>
         </div>
         <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200">
-          {t('sensor_inputs.target_moisture', 'Target')}: {selectedFeedType?.idealMoisture} moisture
+          {t('sensor_inputs.target_moisture', 'Target')}: {selectedFeedType?.idealMoisture} {t('sensor_inputs.moisture_unit', 'moisture')}
         </span>
       </div>
 
@@ -43,7 +61,7 @@ export const SensorInputs = ({
           placeholder="65.0"
           unit="%"
           icon={Droplets}
-          helperText={`Ideal: ${selectedFeedType?.idealMoisture || '62-68%'}`}
+          helperText={`${t('sensor_inputs.ideal', 'Ideal')}: ${selectedFeedType?.idealMoisture || '62-68%'}`}
           required
         />
 
@@ -60,7 +78,7 @@ export const SensorInputs = ({
           placeholder="3.9"
           unit="pH"
           icon={TestTubes}
-          helperText={`Ideal: ${selectedFeedType?.idealPH || '3.8-4.2'}`}
+          helperText={`${t('sensor_inputs.ideal', 'Ideal')}: ${selectedFeedType?.idealPH || '3.8-4.2'}`}
           required
         />
 
@@ -77,7 +95,7 @@ export const SensorInputs = ({
           placeholder="22"
           unit="°C"
           icon={Thermometer}
-          helperText="Normal: < 28°C (>35°C heating)"
+          helperText={t('sensor_inputs.temp_helper', 'Normal: < 28°C (>35°C heating)')}
           required
         />
       </div>
@@ -102,7 +120,7 @@ export const SensorInputs = ({
           id="storage"
           value={draft.storage}
           onChange={(e) => updateDraft('storage', e.target.value)}
-          options={STORAGE_TYPES}
+          options={storageOptions}
           icon={Warehouse}
           helperText={t('sensor_inputs.storage_helper', 'Storage system used on farm')}
         />
@@ -115,7 +133,7 @@ export const SensorInputs = ({
           id="odor"
           value={draft.odor}
           onChange={(e) => updateDraft('odor', e.target.value)}
-          options={ODOR_PROFILES}
+          options={odorOptions}
           icon={Wind}
           helperText={t('sensor_inputs.odor_helper', 'Fermentation odor characteristics')}
         />
@@ -126,7 +144,7 @@ export const SensorInputs = ({
           id="color"
           value={draft.color}
           onChange={(e) => updateDraft('color', e.target.value)}
-          options={COLOR_PROFILES}
+          options={colorOptions}
           icon={Palette}
           helperText={t('sensor_inputs.color_helper', 'Color tone & visible mold appearance')}
         />

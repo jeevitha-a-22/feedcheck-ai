@@ -164,9 +164,9 @@ export const NewTestPage = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 text-sm">{typeName}</h4>
-                    <p className="text-[11px] text-slate-500 font-medium">{type.category}</p>
+                    <p className="text-[11px] text-slate-500 font-medium">{t(`feed_types.${type.category.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`, type.category)}</p>
                     <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-600 font-semibold">
-                      <span>Target: {type.idealMoisture}</span>
+                      <span>{t('metrics.target', 'Target')}: {type.idealMoisture}</span>
                       <span>pH {type.idealPH}</span>
                     </div>
                   </div>

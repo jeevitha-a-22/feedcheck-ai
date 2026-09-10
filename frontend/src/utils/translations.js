@@ -2,8 +2,8 @@
  * FeedCheck AI — Multilingual Translation Dictionaries
  * Supported Languages: English (en), Kannada (kn), Hindi (hi)
  *
- * NOTE: Scientific terms (FBSI), units (%, pH, °C), and model confidence metrics
- * are kept strictly unchanged to preserve technical precision.
+ * NOTE: Scientific terms (FBSI, MobileNetV2), units (%, pH, °C), and model confidence metrics
+ * are kept strictly accurate to preserve technical and agronomic precision.
  */
 
 export const TRANSLATIONS = {
@@ -22,6 +22,17 @@ export const TRANSLATIONS = {
       hero_text: 'Screen feed and silage quality in seconds. Upload a sample image and enter available field measurements to identify visible quality and spoilage indicators early.',
       start_new_test: 'Start New Test',
       how_it_works_btn: 'How It Works',
+      mobilenet_vision: 'MobileNetV2 FBSI Vision',
+      on_farm_screening: 'On-Farm Quality Screening',
+      instant_advisory: 'Instant Advisory',
+      smart_silage_ai: 'Smart Silage AI',
+      ai_vision_scanner: 'AI Vision Scanner',
+      fbsi_active: 'FBSI Active',
+      corn_silage_batch: 'Corn Silage Batch',
+      confidence_suffix: 'Confidence',
+      moisture: 'Moisture',
+      acidity: 'Acidity',
+      core_temp: 'Core Temp',
       total_tests: 'Total Tests Screened',
       batches_evaluated: 'Batches Evaluated',
       avg_quality: 'Average Quality Index',
@@ -35,7 +46,18 @@ export const TRANSLATIONS = {
       learn_banner_title: 'New to FeedCheck AI? Learn How It Works',
       learn_banner_sub: 'See how image scans and field measurements generate screening results and practical farmer advisory.',
       guidelines_title: 'On-Farm Silage Management Guidelines',
-      guidelines_sub: 'Essential practices to preserve nutritional density and prevent aerobic spoilage.'
+      guidelines_sub: 'Essential practices to preserve nutritional density and prevent aerobic spoilage.',
+      tips: {
+        tip_1_title: 'Optimal Silo Packing Density',
+        tip_1_cat: 'Preservation',
+        tip_1_desc: 'Pack bunker silage to at least 240 kg DM/m³ (15 lbs DM/ft³) to minimize trapped oxygen and prevent mold.',
+        tip_2_title: 'Moisture Target for Corn Silage',
+        tip_2_cat: 'Harvest Window',
+        tip_2_desc: 'Harvest when whole-plant dry matter is between 32% and 38% (62% - 68% moisture) for peak starch digestibility.',
+        tip_3_title: 'Bunker Face Management',
+        tip_3_cat: 'Feeding',
+        tip_3_desc: 'Maintain a minimum face removal rate of 15 to 30 cm (6-12 inches) daily to prevent aerobic deterioration.'
+      }
     },
     new_test: {
       title: 'New Silage Screening Test',
@@ -68,7 +90,12 @@ export const TRANSLATIONS = {
       grass_silage: 'Grass Silage',
       alfalfa_haylage: 'Alfalfa Haylage',
       tmr_mix: 'TMR (Total Mixed Ration)',
-      sorghum_silage: 'Sorghum Silage'
+      sorghum_silage: 'Sorghum Silage',
+      whole_crop_forage: 'Whole-Crop Forage',
+      perennial_grass: 'Perennial Grass',
+      legume_forage: 'Legume Forage',
+      blended_diet: 'Blended Diet',
+      warm_season_crop: 'Warm-season Crop'
     },
     sensor_inputs: {
       available_inputs_title: 'Available Sensor & Sample Inputs',
@@ -80,6 +107,7 @@ export const TRANSLATIONS = {
       ph_sub: 'Acid preservation index',
       temp_label: 'Core Temperature',
       temp_sub: 'Thermal stability baseline',
+      temp_helper: 'Normal: < 28°C (>35°C heating)',
       cut_length_label: 'Cut / Chop Length',
       cut_length_helper: 'Theoretical length of cut (TLC)',
       storage_label: 'Silo / Storage Structure',
@@ -88,7 +116,31 @@ export const TRANSLATIONS = {
       odor_helper: 'Fermentation odor characteristics',
       color_label: 'Color Tone & Visual Traits',
       color_helper: 'Color tone & visible mold appearance',
-      quick_presets: 'Quick Sample Presets:'
+      quick_presets: 'Quick Sample Presets:',
+      ideal: 'Ideal',
+      moisture_unit: 'moisture',
+      storage_types: {
+        bunker_silo: 'Bunker Silo',
+        drive_over_pile: 'Drive-over Silage Pile',
+        ag_bag: 'Ag-Bag / Silo Tube',
+        wrapped_bales: 'Wrapped Round Bales',
+        tower_silo: 'Concrete Stave / Tower Silo'
+      },
+      odor_profiles: {
+        pleasant_acidic: 'Pleasant & Acidic (Clean Lactic Acid)',
+        sweet_fruity: 'Sweet & Fruity (Alcohol / Yeast)',
+        sharp_vinegar: 'Sharp Vinegar (High Acetic Acid)',
+        rancid_butter: 'Rancid / Vomit (Butyric Acid - High Risk)',
+        musty_moldy: 'Musty / Earthy (Mold & Spoilage)',
+        burnt_caramel: 'Burnt / Tobacco / Caramel (Heat Damage)'
+      },
+      color_profiles: {
+        olive_green: 'Olive Green / Light Yellow (Optimal)',
+        yellowish_brown: 'Yellowish-Brown (Moderate Fermentation)',
+        dark_brown: 'Dark Brown (High Heat / Aerobic Spoilage)',
+        blackish: 'Blackish / Slimy (Severe Spoilage / Clostridial)',
+        white_patches: 'Visible White/Blue Mold Patches'
+      }
     },
     sample_upload: {
       title: 'Feed / Silage Sample Image',
@@ -103,7 +155,8 @@ export const TRANSLATIONS = {
       upload_title: 'Upload Feed Photo or Capture with Camera',
       upload_desc: 'Capture a representative core or freshly faced silage sample in natural light.',
       select_file: 'Select Image File',
-      click_to_use: 'Click to use'
+      click_to_use: 'Click to use',
+      preview_unavailable: 'Feed sample preview unavailable'
     },
     result: {
       title_suffix: 'Screening Result',
@@ -152,9 +205,14 @@ export const TRANSLATIONS = {
       risk_low: 'Low Risk',
       risk_medium: 'Medium Risk',
       risk_high: 'High Risk',
+      risk_desc_low: 'No secondary clostridial or yeast fermentation detected.',
+      risk_desc_medium: 'Mild aerobic warming or moisture variation present.',
+      risk_desc_high: 'Active mold sporulation or secondary butyric fermentation.',
       ai_confidence: 'AI Confidence',
       flags_title: 'Detected Flags:',
-      eval_default: 'Evaluated based on moisture equilibrium, pH acidity, and thermal stability.'
+      eval_default: 'Evaluated based on moisture equilibrium, pH acidity, and thermal stability.',
+      fqi: 'Feed Quality Index (FQI)',
+      index_100: 'Index / 100'
     },
     advisory: {
       quality_overview: 'Quality Assessment Overview',
@@ -170,16 +228,20 @@ export const TRANSLATIONS = {
       scan_verified: 'Vision Scan Verified',
       surface_scan: 'Surface Scan Analysis',
       cv_metric: 'Computer Vision Metric',
+      observation_prefix: 'Visual Observation',
+      trait_prefix: 'Trait',
       no_indicators: 'No visual indicators recorded.'
     },
     evidence: {
       title: 'Why? Scientific Evidence & Analysis',
       subtitle: 'Agronomic reasoning and probe evidence driving this quality classification.',
+      factor_prefix: 'Agronomic Factor',
       no_evidence: 'No evidence details available.'
     },
     qr: {
       title: 'QR-Based Batch Traceability & Verification',
       subtitle: "Scannable link to this specific sample's screening record.",
+      view_batch_qr: 'View Batch Verification QR',
       traceability_badge: 'Traceability ID Generated',
       batch_qr_title: 'Batch Verification QR Code',
       description: 'Anyone scanning this QR code will access the on-demand batch traceability summary, including FBSI visual screening index, model confidence, and recorded field inputs.',
@@ -207,6 +269,8 @@ export const TRANSLATIONS = {
       recorded_measurements: 'Recorded Field Measurements',
       disclaimer_title: 'Prototype screening record — not a laboratory certification.',
       disclaimer_body: 'This verification record provides preliminary operational screening data generated from the MobileNetV2 FBSI visual classifier and recorded field sensor readings. It does not certify laboratory feed quality, mycotoxin absence, or chemical nutritional safety.',
+      result_classification: 'Result Classification',
+      default_visual_note: 'Visual bunk residue evaluation via MobileNetV2 transfer learning model.',
       view_full_report: 'View Full Report',
       return_to_history: 'Return to History',
       not_found_title: 'Verification record not found.',
@@ -232,6 +296,7 @@ export const TRANSLATIONS = {
       title: 'Silage Quality Analytics & Summary',
       subtitle: 'Farm-wide quality trends, moisture distribution, and bunker health overview.',
       export_csv: 'Export CSV',
+      export_alert: 'Exporting Farm Silage Analytics Report (.CSV)...',
       total_tests: 'Total Tests',
       avg_quality_index: 'Avg Quality Index',
       avg_moisture: 'Avg Moisture',
@@ -240,7 +305,11 @@ export const TRANSLATIONS = {
       distribution_sub: 'Proportion of tested silage meeting optimal, acceptable, or high-risk preservation benchmarks.',
       storage_status: 'Bunker & Lot Health Status',
       storage_sub: 'Summary of storage units evaluated during this testing cycle.',
-      batches: 'batches'
+      batches: 'batches',
+      score: 'Score',
+      grade_a_desc: 'Excellent lactic fermentation, ready for lactating herd.',
+      grade_b_desc: 'Mild aerobic warming or moisture variation. Monitor face.',
+      grade_c_desc: 'Elevated spoilage risk. Restrict feeding to high-risk cows.'
     },
     how_it_works: {
       title: 'How FeedCheck AI Works',
@@ -274,6 +343,17 @@ export const TRANSLATIONS = {
       hero_text: 'ಮೇವು ಮತ್ತು ಸೈಲೇಜ್ ಗುಣಮಟ್ಟವನ್ನು ಕೆಲವೇ ಸೆಕೆಂಡುಗಳಲ್ಲಿ ಪರಿಶೀಲಿಸಿ. ಗೋಚರ ಗುಣಮಟ್ಟ ಮತ್ತು ಹಾಳಾಗುವ ಲಕ್ಷಣಗಳನ್ನು ಮೊದಲೇ ಗುರುತಿಸಲು ಮಾದರಿ ಚಿತ್ರವನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ ಮತ್ತು ಲಭ್ಯವಿರುವ ಕ್ಷೇತ್ರ ಮಾಪನಗಳನ್ನು ನಮೂದಿಸಿ.',
       start_new_test: 'ಹೊಸ ಪರೀಕ್ಷೆ ಪ್ರಾರಂಭಿಸಿ',
       how_it_works_btn: 'ಇದು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
+      mobilenet_vision: 'MobileNetV2 FBSI ದೃಷ್ಟಿ',
+      on_farm_screening: 'ಕೃಷಿ ಗುಣಮಟ್ಟ ತಪಾಸಣೆ',
+      instant_advisory: 'ತ್ವರಿತ ಸಲಹೆ',
+      smart_silage_ai: 'ಸ್ಮಾರ್ಟ್ ಸೈಲೇಜ್ AI',
+      ai_vision_scanner: 'AI ದೃಷ್ಟಿ ಸ್ಕ್ಯಾನರ್',
+      fbsi_active: 'FBSI ಸಕ್ರಿಯ',
+      corn_silage_batch: 'ಮೆಕ್ಕೆಜೋಳದ ಸೈಲೇಜ್ ಬ್ಯಾಚ್',
+      confidence_suffix: 'ವಿಶ್ವಾಸಾರ್ಹತೆ',
+      moisture: 'ತೇವಾಂಶ',
+      acidity: 'ಆಮ್ಲೀಯತೆ',
+      core_temp: 'ಕೋರ್ ತಾಪಮಾನ',
       total_tests: 'ಒಟ್ಟು ಪರೀಕ್ಷಿಸಿದ ಮಾದರಿಗಳು',
       batches_evaluated: 'ಮೌಲ್ಯಮಾಪನ ಮಾಡಿದ ಬ್ಯಾಚ್‌ಗಳು',
       avg_quality: 'ಸರಾಸರಿ ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ',
@@ -287,7 +367,18 @@ export const TRANSLATIONS = {
       learn_banner_title: 'FeedCheck AI ಗೆ ಹೊಸಬರೆ? ಇದು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ ಎಂದು ತಿಳಿಯಿರಿ',
       learn_banner_sub: 'ಚಿತ್ರ ಸ್ಕ್ಯಾನ್‌ಗಳು ಮತ್ತು ಕ್ಷೇತ್ರ ಮಾಪನಗಳು ಹೇಗೆ ತಪಾಸಣಾ ಫಲಿತಾಂಶಗಳು ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ಸಲಹೆಗಳನ್ನು ನೀಡುತ್ತವೆ ಎಂದು ನೋಡಿ.',
       guidelines_title: 'ಕೃಷಿ ಸೈಲೇಜ್ ನಿರ್ವಹಣಾ ಮಾರ್ಗಸೂಚಿಗಳು',
-      guidelines_sub: 'ಪೌಷ್ಟಿಕಾಂಶದ ಸಾಂದ್ರತೆಯನ್ನು ಕಾಪಾಡಲು ಮತ್ತು ಗಾಳಿಯಿಂದ ಹಾಳಾಗುವುದನ್ನು ತಡೆಯಲು ಅಗತ್ಯ ಅಭ್ಯಾಸಗಳು.'
+      guidelines_sub: 'ಪೌಷ್ಟಿಕಾಂಶದ ಸಾಂದ್ರತೆಯನ್ನು ಕಾಪಾಡಲು ಮತ್ತು ಗಾಳಿಯಿಂದ ಹಾಳಾಗುವುದನ್ನು ತಡೆಯಲು ಅಗತ್ಯ ಅಭ್ಯಾಸಗಳು.',
+      tips: {
+        tip_1_title: 'ಉತ್ತಮ ಸಿಲೋ ಪ್ಯಾಕಿಂಗ್ ಸಾಂದ್ರತೆ',
+        tip_1_cat: 'ಸಂರಕ್ಷಣೆ',
+        tip_1_desc: 'ಆಮ್ಲಜನಕವನ್ನು ಕಡಿಮೆ ಮಾಡಲು ಮತ್ತು ಶಿಲೀಂಧ್ರವನ್ನು ತಡೆಯಲು ಬಂಕರ್ ಸೈಲೇಜ್ ಅನ್ನು ಕನಿಷ್ಠ 240 kg DM/m³ ಸಾಂದ್ರತೆಗೆ ಪ್ಯಾಕ್ ಮಾಡಿ.',
+        tip_2_title: 'ಮೆಕ್ಕೆಜೋಳದ ಸೈಲೇಜ್‌ಗೆ ತೇವಾಂಶ ಗುರಿ',
+        tip_2_cat: 'ಕೊಯ್ಲು ಸಮಯ',
+        tip_2_desc: 'ಉತ್ತಮ ಪಿಷ್ಟ ಜೀರ್ಣಸಾಧ್ಯತೆಗಾಗಿ ಒಣ ಪದಾರ್ಥವು 32% ರಿಂದ 38% (62% - 68% ತೇವಾಂಶ) ನಡುವೆ ಇರುವಾಗ ಕೊಯ್ಲು ಮಾಡಿ.',
+        tip_3_title: 'ಬಂಕರ್ ಮುಖಭಾಗದ ನಿರ್ವಹಣೆ',
+        tip_3_cat: 'ಆಹಾರ ನೀಡಿಕೆ',
+        tip_3_desc: 'ಗಾಳಿಯಿಂದ ಹಾಳಾಗುವುದನ್ನು ತಡೆಯಲು ಪ್ರತಿದಿನ ಕನಿಷ್ಠ 15 ರಿಂದ 30 ಸೆಂ.ಮೀ ಮೇವು ತೆಗೆಯಿರಿ.'
+      }
     },
     new_test: {
       title: 'ಹೊಸ ಸೈಲೇಜ್ ತಪಾಸಣಾ ಪರೀಕ್ಷೆ',
@@ -320,7 +411,12 @@ export const TRANSLATIONS = {
       grass_silage: 'ಹುಲ್ಲಿನ ಸೈಲೇಜ್ (Grass Silage)',
       alfalfa_haylage: 'ಲುಸರ್ನ್/ಅಲ್ಫಾಲ್ಫಾ ಹೇಲೇಜ್',
       tmr_mix: 'TMR (ಸಂಪೂರ್ಣ ಮಿಶ್ರ ಪಡಿತರ)',
-      sorghum_silage: 'ಜೋಳದ ಸೈಲೇಜ್ (Sorghum Silage)'
+      sorghum_silage: 'ಜೋಳದ ಸೈಲೇಜ್ (Sorghum Silage)',
+      whole_crop_forage: 'ಸಂಪೂರ್ಣ ಬೆಳೆ ಮೇವು',
+      perennial_grass: 'ದೀರ್ಘಕಾಲಿಕ ಹುಲ್ಲು',
+      legume_forage: 'ದ್ವಿದಳ ಧಾನ್ಯ ಮೇವು',
+      blended_diet: 'ಮಿಶ್ರಿತ ಸಮತೋಲಿತ ಆಹಾರ',
+      warm_season_crop: 'ಉಷ್ಣ ಹವಾಮಾನ ಬೆಳೆ'
     },
     sensor_inputs: {
       available_inputs_title: 'ಲಭ್ಯವಿರುವ ಸಂವೇದಕ ಮತ್ತು ಮಾದರಿ ಇನ್‌ಪುಟ್‌ಗಳು',
@@ -332,6 +428,7 @@ export const TRANSLATIONS = {
       ph_sub: 'ಆಮ್ಲ ಸಂರಕ್ಷಣಾ ಸೂಚ್ಯಂಕ',
       temp_label: 'ಕೋರ್ ತಾಪಮಾನ',
       temp_sub: 'ಉಷ್ಣ ಸ್ಥಿರತೆಯ ಮೂಲರೇಖೆ',
+      temp_helper: 'ಸಾಮಾನ್ಯ: < 28°C (>35°C ಬಿಸಿಯಾಗುವಿಕೆ)',
       cut_length_label: 'ಕತ್ತರಿಸುವ ಉದ್ದ (TLC mm)',
       cut_length_helper: 'ಸೈದ್ಧಾಂತಿಕ ಕಟ್ ಉದ್ದ (TLC)',
       storage_label: 'ಶೇಖರಣಾ ರಚನೆಯ ಪ್ರಕಾರ',
@@ -340,7 +437,31 @@ export const TRANSLATIONS = {
       odor_helper: 'ಹುದುಗುವಿಕೆ ವಾಸನೆಯ ಗುಣಲಕ್ಷಣಗಳು',
       color_label: 'ಗೋಚರ ಬಣ್ಣ ಮತ್ತು ಟೋನ್',
       color_helper: 'ಬಣ್ಣದ ಛಾಯೆ ಮತ್ತು ಶಿಲೀಂಧ್ರ ಲಕ್ಷಣಗಳು',
-      quick_presets: 'ತ್ವರಿತ ಮಾದರಿ ಪೂರ್ವನಿಗದಿಗಳು:'
+      quick_presets: 'ತ್ವರಿತ ಮಾದರಿ ಪೂರ್ವನಿಗದಿಗಳು:',
+      ideal: 'ಸೂಕ್ತ',
+      moisture_unit: 'ತೇವಾಂಶ',
+      storage_types: {
+        bunker_silo: 'ಬಂಕರ್ ಸಿಲೋ (Bunker Silo)',
+        drive_over_pile: 'ಡ್ರೈವ್-ಓವರ್ ಸೈಲೇಜ್ ಪೈಲ್ (Drive-over Pile)',
+        ag_bag: 'ಕೃಷಿ ಬ್ಯಾಗ್ / ಸಿಲೋ ಟ್ಯೂಬ್ (Ag-Bag)',
+        wrapped_bales: 'ಸುತ್ತುವರಿದ ದುಂಡು ಬೇಲ್‌ಗಳು (Wrapped Bales)',
+        tower_silo: 'ಕಾಂಕ್ರೀಟ್ ಟವರ್ ಸಿಲೋ (Tower Silo)'
+      },
+      odor_profiles: {
+        pleasant_acidic: 'ಹ್ಲಾದಕರ ಮತ್ತು ಆಮ್ಲೀಯ (ಸ್ವಚ್ಛ ಲ್ಯಾಕ್ಟಿಕ್ ಆಮ್ಲ)',
+        sweet_fruity: 'ಸಿಹಿ ಮತ್ತು ಹಣ್ಣಿನಂತಹ (ಆಲ್ಕೋಹಾಲ್ / ಯೀಸ್ಟ್)',
+        sharp_vinegar: 'ತೀಕ್ಷ್ಣ ವಿನೆಗರ್ (ಹೆಚ್ಚಿನ ಅಸಿಟಿಕ್ ಆಮ್ಲ)',
+        rancid_butter: 'ಕೆಟ್ಟ ವಾಸನೆ (ಬ್ಯುಟೈರಿಕ್ ಆಮ್ಲ - ಹೆಚ್ಚಿನ ಅಪಾಯ)',
+        musty_moldy: 'ಬೂಸ್ಟು / ಮಣ್ಣಿನ ವಾಸನೆ (ಶಿಲೀಂಧ್ರ ಮತ್ತು ಹಾಳಾಗುವಿಕೆ)',
+        burnt_caramel: 'ಸುಟ್ಟ / ತಂಬಾಕು / ಕ್ಯಾರಮೆಲ್ (ಶಾಖದ ಹಾನಿ)'
+      },
+      color_profiles: {
+        olive_green: 'ಆಲಿವ್ ಹಸಿರು / ತಿಳಿ ಹಳದಿ (ಉತ್ತಮ)',
+        yellowish_brown: 'ಹಳದಿ-ಕಂದು (ಮಧ್ಯಮ ಹುದುಗುವಿಕೆ)',
+        dark_brown: 'ಗಾಢ ಕಂದು (ಹೆಚ್ಚಿನ ಶಾಖ / ಗಾಳಿಯಿಂದ ಹಾಳಾಗುವಿಕೆ)',
+        blackish: 'ಕಪ್ಪು / ಜಿಡ್ಡಿನಂತಿರುವ (ತೀವ್ರ ಹಾಳಾಗುವಿಕೆ)',
+        white_patches: 'ಗೋಚರ ಬಿಳಿ/ನೀಲಿ ಶಿಲೀಂಧ್ರ ಕಲೆಗಳು'
+      }
     },
     sample_upload: {
       title: 'ಮೇವು / ಸೈಲೇಜ್ ಮಾದರಿ ಚಿತ್ರ',
@@ -355,7 +476,8 @@ export const TRANSLATIONS = {
       upload_title: 'ಮೇವಿನ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ ಅಥವಾ ಕ್ಯಾಮೆರಾದಿಂದ ಸೆರೆಹಿಡಿಯಿರಿ',
       upload_desc: 'ನೈಸರ್ಗಿಕ ಬೆಳಕಿನಲ್ಲಿ ತಾಜಾ ಸೈಲೇಜ್ ಮಾದರಿಯ ಚಿತ್ರವನ್ನು ಸೆರೆಹಿಡಿಯಿರಿ.',
       select_file: 'ಚಿತ್ರ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ',
-      click_to_use: 'ಬಳಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ'
+      click_to_use: 'ಬಳಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ',
+      preview_unavailable: 'ಮೇವಿನ ಮಾದರಿ ಪೂರ್ವವೀಕ್ಷಣೆ ಲಭ್ಯವಿಲ್ಲ'
     },
     result: {
       title_suffix: 'ತಪಾಸಣಾ ಫಲಿತಾಂಶ',
@@ -404,9 +526,14 @@ export const TRANSLATIONS = {
       risk_low: 'ಕಡಿಮೆ ಅಪಾಯ',
       risk_medium: 'ಮಧ್ಯಮ ಅಪಾಯ',
       risk_high: 'ಹೆಚ್ಚಿನ ಅಪಾಯ',
+      risk_desc_low: 'ಯಾವುದೇ ದ್ವಿತೀಯ ಕ್ಲೋಸ್ಟ್ರಿಡಿಯಲ್ ಅಥವಾ ಯೀಸ್ಟ್ ಹುದುಗುವಿಕೆ ಪತ್ತೆಯಾಗಿಲ್ಲ.',
+      risk_desc_medium: 'ಸೌಮ್ಯವಾದ ಏರೋಬಿಕ್ ತಾಪಮಾನ ಅಥವಾ ತೇವಾಂಶ ವ್ಯತ್ಯಾಸವಿದೆ.',
+      risk_desc_high: 'ಸಕ್ರಿಯ ಶಿಲೀಂಧ್ರ ಅಥವಾ ದ್ವಿತೀಯ ಬ್ಯುಟೈರಿಕ್ ಹುದುಗುವಿಕೆ ಪತ್ತೆಯಾಗಿದೆ.',
       ai_confidence: 'AI ವಿಶ್ವಾಸಾರ್ಹತೆ',
       flags_title: 'ಪತ್ತೆಯಾದ ಎಚ್ಚರಿಕೆಗಳು:',
-      eval_default: 'ತೇವಾಂಶ ಸಮತೋಲನ, pH ಆಮ್ಲೀಯತೆ ಮತ್ತು ಉಷ್ಣ ಸ್ಥಿರತೆಯ ಆಧಾರದ ಮೇಲೆ ಮೌಲ್ಯಮಾಪನ ಮಾಡಲಾಗಿದೆ.'
+      eval_default: 'ತೇವಾಂಶ ಸಮತೋಲನ, pH ಆಮ್ಲೀಯತೆ ಮತ್ತು ಉಷ್ಣ ಸ್ಥಿರತೆಯ ಆಧಾರದ ಮೇಲೆ ಮೌಲ್ಯಮಾಪನ ಮಾಡಲಾಗಿದೆ.',
+      fqi: 'ಮೇವು ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ (FQI)',
+      index_100: 'ಸೂಚ್ಯಂಕ / 100'
     },
     advisory: {
       quality_overview: 'ಗುಣಮಟ್ಟ ಮೌಲ್ಯಮಾಪನದ ಅವಲೋಕನ',
@@ -422,16 +549,20 @@ export const TRANSLATIONS = {
       scan_verified: 'ದೃಶ್ಯ ಸ್ಕ್ಯಾನ್ ಪರಿಶೀಲಿಸಲಾಗಿದೆ',
       surface_scan: 'ಮೇಲ್ಮೈ ಸ್ಕ್ಯಾನ್ ವಿಶ್ಲೇಷಣೆ',
       cv_metric: 'ಕಂಪ್ಯೂಟರ್ ದೃಷ್ಟಿ ಮೆಟ್ರಿಕ್',
+      observation_prefix: 'ದೃಶ್ಯ ವೀಕ್ಷಣೆ',
+      trait_prefix: 'ಗುಣಲಕ್ಷಣ',
       no_indicators: 'ಯಾವುದೇ ದೃಶ್ಯ ಸೂಚಕಗಳನ್ನು ದಾಖಲಿಸಲಾಗಿಲ್ಲ.'
     },
     evidence: {
       title: 'ಕಾರಣ? ವೈಜ್ಞಾನಿಕ ಪುರಾವೆ ಮತ್ತು ವಿಶ್ಲೇಷಣೆ',
       subtitle: 'ಈ ಗುಣಮಟ್ಟ ವರ್ಗೀಕರಣಕ್ಕೆ ಕಾರಣವಾದ ಕೃಷಿ ತರ್ಕ ಮತ್ತು ಪುರಾವೆಗಳು.',
+      factor_prefix: 'ಕೃಷಿ ಅಂಶ',
       no_evidence: 'ಯಾವುದೇ ಪುರಾವೆ ವಿವರಗಳು ಲಭ್ಯವಿಲ್ಲ.'
     },
     qr: {
       title: 'QR-ಆಧಾರಿತ ಬ್ಯಾಚ್ ಪತ್ತೆಹಚ್ಚುವಿಕೆ ಮತ್ತು ಪರಿಶೀಲನೆ',
       subtitle: 'ಈ ನಿರ್ದಿಷ್ಟ ಮಾದರಿಯ ತಪಾಸಣಾ ದಾಖಲೆಗೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಬಹುದಾದ ಲಿಂಕ್.',
+      view_batch_qr: 'ಬ್ಯಾಚ್ ಪರಿಶೀಲನಾ QR ವೀಕ್ಷಿಸಿ',
       traceability_badge: 'ಪತ್ತೆಹಚ್ಚುವಿಕೆ ID ರಚಿಸಲಾಗಿದೆ',
       batch_qr_title: 'ಬ್ಯಾಚ್ ಪರಿಶೀಲನಾ QR ಕೋಡ್',
       description: 'ಈ QR ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡುವ ಯಾರಾದರೂ FBSI ದೃಶ್ಯ ಸೂಚ್ಯಂಕ, ಮಾದರಿ ವಿಶ್ವಾಸಾರ್ಹತೆ ಮತ್ತು ದಾಖಲಾದ ಕ್ಷೇತ್ರ ಇನ್‌ಪುಟ್‌ಗಳನ್ನು ಒಳಗೊಂಡಂತೆ ಬ್ಯಾಚ್ ಸಾರಾಂಶವನ್ನು ಪ್ರವೇಶಿಸಬಹುದು.',
@@ -459,6 +590,8 @@ export const TRANSLATIONS = {
       recorded_measurements: 'ದಾಖಲಾದ ಕ್ಷೇತ್ರ ಮಾಪನಗಳು',
       disclaimer_title: 'ಪ್ರೊಟೊಟೈಪ್ ತಪಾಸಣಾ ದಾಖಲೆ — ಪ್ರಯೋಗಾಲಯ ಪ್ರಮಾಣೀಕರಣವಲ್ಲ.',
       disclaimer_body: 'ಈ ಪರಿಶೀಲನಾ ದಾಖಲೆಯು MobileNetV2 FBSI ದೃಶ್ಯ ವರ್ಗೀಕರಣ ಮತ್ತು ದಾಖಲಾದ ಕ್ಷೇತ್ರ ಸಂವೇದಕ ರೀಡಿಂಗ್‌ಗಳಿಂದ ರಚಿಸಲಾದ ಪ್ರಾಥಮಿಕ ಕಾರ್ಯಾಚರಣಾ ತಪಾಸಣಾ ಡೇಟಾವನ್ನು ಒದಗಿಸುತ್ತದೆ. ಇದು ಪ್ರಯೋಗಾಲಯದ ಮೇವಿನ ಗುಣಮಟ್ಟ, ಮೈಕೋಟಾಕ್ಸಿನ್ ಅನುಪಸ್ಥಿತಿ ಅಥವಾ ರಾಸಾಯನಿಕ ಸುರಕ್ಷತೆಯನ್ನು ಪ್ರಮಾಣೀಕರಿಸುವುದಿಲ್ಲ.',
+      result_classification: 'ಫಲಿತಾಂಶ ವರ್ಗೀಕರಣ',
+      default_visual_note: 'MobileNetV2 ವರ್ಗಾವಣೆ ಕಲಿಕೆ ಮಾದರಿಯ ಮೂಲಕ ದೃಶ್ಯ ಬಂಕರ್ ಅವಶೇಷಗಳ ಮೌಲ್ಯಮಾಪನ.',
       view_full_report: 'ಸಂಪೂರ್ಣ ವರದಿ ವೀಕ್ಷಿಸಿ',
       return_to_history: 'ಇತಿಹಾಸಕ್ಕೆ ಹಿಂತಿರುಗಿ',
       not_found_title: 'ಪರಿಶೀಲನಾ ದಾಖಲೆ ಕಂಡುಬಂದಿಲ್ಲ.',
@@ -484,6 +617,7 @@ export const TRANSLATIONS = {
       title: 'ಸೈಲೇಜ್ ಗುಣಮಟ್ಟ ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಸಾರಾಂಶ',
       subtitle: 'ಫಾರ್ಮ್-ವ್ಯಾಪಿ ಗುಣಮಟ್ಟದ ಪ್ರವೃತ್ತಿಗಳು, ತೇವಾಂಶ ವಿತರಣೆ ಮತ್ತು ಬಂಕರ್ ಆರೋಗ್ಯದ ಅವಲೋಕನ.',
       export_csv: 'CSV ರಫ್ತು ಮಾಡಿ',
+      export_alert: 'ಫಾರ್ಮ್ ಸೈಲೇಜ್ ವಿಶ್ಲೇಷಣಾ ವರದಿಯನ್ನು ರಫ್ತು ಮಾಡಲಾಗುತ್ತಿದೆ (.CSV)...',
       total_tests: 'ಒಟ್ಟು ಪರೀಕ್ಷೆಗಳು',
       avg_quality_index: 'ಸರಾಸರಿ ಗುಣಮಟ್ಟ ಸೂಚ್ಯಂಕ',
       avg_moisture: 'ಸರಾಸರಿ ತೇವಾಂಶ',
@@ -492,7 +626,11 @@ export const TRANSLATIONS = {
       distribution_sub: 'ಪರೀಕ್ಷಿಸಿದ ಸೈಲೇಜ್‌ನ ಪ್ರಮಾಣವು ಅತ್ಯುತ್ತಮ, ಸ್ವೀಕಾರಾರ್ಹ ಅಥವಾ ಹೆಚ್ಚಿನ ಅಪಾಯದ ಸಂರಕ್ಷಣಾ ಮಾನದಂಡಗಳನ್ನು ಪೂರೈಸುತ್ತದೆ.',
       storage_status: 'ಬಂಕರ್ ಮತ್ತು ಲಾಟ್ ಆರೋಗ್ಯ ಸ್ಥಿತಿ',
       storage_sub: 'ಈ ಪರೀಕ್ಷಾ ಚಕ್ರದಲ್ಲಿ ಮೌಲ್ಯಮಾಪನ ಮಾಡಿದ ಶೇಖರಣಾ ಘಟಕಗಳ ಸಾರಾಂಶ.',
-      batches: 'ಬ್ಯಾಚ್‌ಗಳು'
+      batches: 'ಬ್ಯಾಚ್‌ಗಳು',
+      score: 'ಸ್ಕೋರ್',
+      grade_a_desc: 'ಉತ್ತಮ ಲ್ಯಾಕ್ಟಿಕ್ ಹುದುಗುವಿಕೆ, ಹಾಲು ಕೊಡುವ ಹಸುಗಳಿಗೆ ಸೂಕ್ತವಾಗಿದೆ.',
+      grade_b_desc: 'ಸೌಮ್ಯವಾದ ಏರೋಬಿಕ್ ತಾಪಮಾನ ಅಥವಾ ತೇವಾಂಶ ವ್ಯತ್ಯಾಸ. ಬಂಕರ್ ಮುಖಭಾಗವನ್ನು ಗಮನಿಸಿ.',
+      grade_c_desc: 'ಹೆಚ್ಚಿನ ಹಾಳಾಗುವ ಅಪಾಯ. ಹೆಚ್ಚಿನ ಅಪಾಯದ ಹಸುಗಳಿಗೆ ಆಹಾರ ನೀಡುವುದನ್ನು ನಿರ್ಬಂಧಿಸಿ.'
     },
     how_it_works: {
       title: 'FeedCheck AI ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ',
@@ -526,6 +664,17 @@ export const TRANSLATIONS = {
       hero_text: 'कुछ ही सेकंड में चारे और साइलेज की गुणवत्ता की जांच करें। प्रारंभिक गुणवत्ता और खराब होने के संकेतकों की पहचान के लिए नमूना छवि अपलोड करें और उपलब्ध फ़ील्ड माप दर्ज करें।',
       start_new_test: 'नया टेस्ट शुरू करें',
       how_it_works_btn: 'यह कैसे काम करता है',
+      mobilenet_vision: 'MobileNetV2 FBSI विज़न',
+      on_farm_screening: 'ऑन-फार्म गुणवत्ता स्क्रीनिंग',
+      instant_advisory: 'तत्काल सलाह',
+      smart_silage_ai: 'स्मार्ट साइलेज AI',
+      ai_vision_scanner: 'AI विज़न स्कैनर',
+      fbsi_active: 'FBSI सक्रिय',
+      corn_silage_batch: 'मक्का साइलेज बैच',
+      confidence_suffix: 'सटीकता',
+      moisture: 'नमी',
+      acidity: 'अम्लता',
+      core_temp: 'कोर तापमान',
       total_tests: 'कुल जाँचे गए परीक्षण',
       batches_evaluated: 'मूल्यांकित बैच',
       avg_quality: 'औसत गुणवत्ता सूचकांक',
@@ -539,7 +688,18 @@ export const TRANSLATIONS = {
       learn_banner_title: 'FeedCheck AI पर नए हैं? जानें कि यह कैसे काम करता है',
       learn_banner_sub: 'देखें कि कैसे छवि स्कैन और फ़ील्ड माप स्क्रीनिंग परिणाम और व्यावहारिक किसान सलाह उत्पन्न करते हैं।',
       guidelines_title: 'फार्म पर साइलेज प्रबंधन दिशानिर्देश',
-      guidelines_sub: 'पोषक तत्वों के घनत्व को बनाए रखने और एरोबिक खराबी को रोकने के लिए आवश्यक अभ्यास।'
+      guidelines_sub: 'पोषक तत्वों के घनत्व को बनाए रखने और एरोबिक खराबी को रोकने के लिए आवश्यक अभ्यास।',
+      tips: {
+        tip_1_title: 'इष्टतम साइलो पैकिंग घनत्व',
+        tip_1_cat: 'संरक्षण',
+        tip_1_desc: 'फंसी हुई ऑक्सीजन को कम करने और फफूंद को रोकने के लिए बंकर साइलेज को कम से कम 240 kg DM/m³ तक पैक करें।',
+        tip_2_title: 'मक्का साइलेज के लिए नमी का लक्ष्य',
+        tip_2_cat: 'कटाई का समय',
+        tip_2_desc: 'उत्कृष्ट स्टार्च पाचन के लिए संपूर्ण पौधे का शुष्क पदार्थ 32% से 38% (62% - 68% नमी) होने पर कटाई करें।',
+        tip_3_title: 'बंकर फेस प्रबंधन',
+        tip_3_cat: 'आहार प्रबंधन',
+        tip_3_desc: 'एरोबिक खराबी को रोकने के लिए प्रतिदिन न्यूनतम 15 से 30 सेमी निकालने की दर बनाए रखें।'
+      }
     },
     new_test: {
       title: 'नया साइलेज स्क्रीनिंग टेस्ट',
@@ -572,7 +732,12 @@ export const TRANSLATIONS = {
       grass_silage: 'घास साइलेज (Grass Silage)',
       alfalfa_haylage: 'अल्फाल्फा हेलेज (Alfalfa Haylage)',
       tmr_mix: 'TMR (कुल मिश्रित राशन)',
-      sorghum_silage: 'ज्वार साइलेज (Sorghum Silage)'
+      sorghum_silage: 'ज्वार साइलेज (Sorghum Silage)',
+      whole_crop_forage: 'संपूर्ण फसल चारा',
+      perennial_grass: 'बारहमासी घास',
+      legume_forage: 'दलहनी चारा',
+      blended_diet: 'संतुलित मिश्रित आहार',
+      warm_season_crop: 'गर्म मौसम की फसल'
     },
     sensor_inputs: {
       available_inputs_title: 'उपलब्ध सेंसर और नमूना इनपुट',
@@ -584,6 +749,7 @@ export const TRANSLATIONS = {
       ph_sub: 'अम्ल संरक्षण सूचकांक',
       temp_label: 'कोर तापमान',
       temp_sub: 'थर्मल स्थिरता आधार रेखा',
+      temp_helper: 'सामान्य: < 28°C (>35°C गर्म होना)',
       cut_length_label: 'कटाई की लंबाई (TLC mm)',
       cut_length_helper: 'सैद्धांतिक कट लंबाई (TLC)',
       storage_label: 'भंडारण संरचना प्रकार',
@@ -592,7 +758,31 @@ export const TRANSLATIONS = {
       odor_helper: 'किण्वन गंध विशेषताएं',
       color_label: 'दृश्य रंजकता और रंगत',
       color_helper: 'रंग का टोन और फफूंद की उपस्थिति',
-      quick_presets: 'त्वरित नमूना प्रीसेट:'
+      quick_presets: 'त्वरित नमूना प्रीसेट:',
+      ideal: 'आदर्श',
+      moisture_unit: 'नमी',
+      storage_types: {
+        bunker_silo: 'बंकर साइलो (Bunker Silo)',
+        drive_over_pile: 'ड्राइव-ओवर साइलेज ढेर (Drive-over Pile)',
+        ag_bag: 'एग-बैग / साइलो ट्यूब (Ag-Bag)',
+        wrapped_bales: 'रैप किए गए गोल बेल (Wrapped Bales)',
+        tower_silo: 'कंक्रीट टॉवर साइलो (Tower Silo)'
+      },
+      odor_profiles: {
+        pleasant_acidic: 'सुखद और अम्लीय (स्वच्छ लैक्टिक एसिड)',
+        sweet_fruity: 'मीठा और फल जैसा (अल्कोहल / खमीर)',
+        sharp_vinegar: 'तीखा सिरका (उच्च एसिटिक एसिड)',
+        rancid_butter: 'दुर्गंधयुक्त / बासी (ब्यूटिरिक एसिड - उच्च जोखिम)',
+        musty_moldy: 'फफूंदयुक्त / मिट्टी जैसी गंध (खराबी का जोखिम)',
+        burnt_caramel: 'जला हुआ / तंबाकू / कारमेल (गर्मी से क्षति)'
+      },
+      color_profiles: {
+        olive_green: 'जैतून हरा / हल्का पीला (इष्टतम)',
+        yellowish_brown: 'पीला-भूरा (मध्यम किण्वन)',
+        dark_brown: 'गहरा भूरा (अत्यधिक गर्मी / एरोबिक खराबी)',
+        blackish: 'काला / चिपचिपा (गंभीर खराबी)',
+        white_patches: 'दृश्यमान सफेद/नीले फफूंद के धब्बे'
+      }
     },
     sample_upload: {
       title: 'चारा / साइलेज नमूना छवि',
@@ -607,7 +797,8 @@ export const TRANSLATIONS = {
       upload_title: 'चारे की फोटो अपलोड करें या कैमरे से लें',
       upload_desc: 'प्राकृतिक प्रकाश में ताजे साइलेज के नमूने की तस्वीर लें।',
       select_file: 'छवि फ़ाइल चुनें',
-      click_to_use: 'उपयोग के लिए क्लिक करें'
+      click_to_use: 'उपयोग के लिए क्लिक करें',
+      preview_unavailable: 'चारा नमूना पूर्वावलोकन अनुपलब्ध'
     },
     result: {
       title_suffix: 'स्क्रीनिंग परिणाम',
@@ -656,9 +847,14 @@ export const TRANSLATIONS = {
       risk_low: 'कम जोखिम',
       risk_medium: 'मध्यम जोखिम',
       risk_high: 'उच्च जोखिम',
+      risk_desc_low: 'कोई द्वितीयक क्लॉस्ट्रिडियल या खमीर किण्वन नहीं पाया गया।',
+      risk_desc_medium: 'हल्की एरोबिक गर्मी या नमी में भिन्नता मौजूद है।',
+      risk_desc_high: 'सक्रिय फफूंद या द्वितीयक ब्यूटिरिक किण्वन मौजूद है।',
       ai_confidence: 'AI सटीकता / विश्वास',
       flags_title: 'पहचाने गए अलर्ट:',
-      eval_default: 'नमी संतुलन, pH अम्लता और थर्मल स्थिरता के आधार पर मूल्यांकित किया गया।'
+      eval_default: 'नमी संतुलन, pH अम्लता और थर्मल स्थिरता के आधार पर मूल्यांकित किया गया।',
+      fqi: 'चारा गुणवत्ता सूचकांक (FQI)',
+      index_100: 'सूचकांक / 100'
     },
     advisory: {
       quality_overview: 'गुणवत्ता मूल्यांकन अवलोकन',
@@ -674,16 +870,20 @@ export const TRANSLATIONS = {
       scan_verified: 'विजन स्कैन सत्यापित',
       surface_scan: 'सतह स्कैन विश्लेषण',
       cv_metric: 'कंप्यूटर विज़न मेट्रिक',
+      observation_prefix: 'दृश्य अवलोकन',
+      trait_prefix: 'लक्षण',
       no_indicators: 'कोई दृश्य संकेतक दर्ज नहीं किया गया।'
     },
     evidence: {
       title: 'कारण? वैज्ञानिक साक्ष्य और विश्लेषण',
       subtitle: 'इस गुणवत्ता वर्गीकरण को निर्धारित करने वाले कृषि संबंधी तर्क और साक्ष्य।',
+      factor_prefix: 'कृषि कारक',
       no_evidence: 'कोई साक्ष्य विवरण उपलब्ध नहीं है।'
     },
     qr: {
       title: 'QR-आधारित बैच ट्रैसेबिलिटी और सत्यापन',
       subtitle: 'इस विशिष्ट नमूने के स्क्रीनिंग रिकॉर्ड का स्कैन करने योग्य लिंक।',
+      view_batch_qr: 'बैच सत्यापन QR देखें',
       traceability_badge: 'ट्रैसेबिलिटी ID उत्पन्न',
       batch_qr_title: 'बैच सत्यापन QR कोड',
       description: 'इस QR कोड को स्कैन करने वाला कोई भी व्यक्ति FBSI विजुअल इंडेक्स, मॉडल विश्वास और रिकॉर्ड किए गए फ़ील्ड इनपुट सहित बैच सारांश देख सकता है।',
@@ -711,6 +911,8 @@ export const TRANSLATIONS = {
       recorded_measurements: 'रिकॉर्ड किए गए फ़ील्ड माप',
       disclaimer_title: 'प्रोटोटाइप स्क्रीनिंग रिकॉर्ड — प्रयोगशाला प्रमाणन नहीं।',
       disclaimer_body: 'यह सत्यापन रिकॉर्ड MobileNetV2 FBSI विजुअल क्लासिफायर और रिकॉर्ड किए गए फ़ील्ड सेंसर रीडिंग से उत्पन्न प्रारंभिक परिचालन स्क्रीनिंग डेटा प्रदान करता है। यह प्रयोगशाला चारे की गुणवत्ता, मायकोटॉक्सिन अनुपस्थिति या रासायनिक पोषण सुरक्षा को प्रमाणित नहीं करता है।',
+      result_classification: 'परिणाम वर्गीकरण',
+      default_visual_note: 'MobileNetV2 ट्रांसफर लर्निंग मॉडल के माध्यम से विजुअल बंकर अवशेष मूल्यांकन।',
       view_full_report: 'पूरी रिपोर्ट देखें',
       return_to_history: 'इतिहास पर लौटें',
       not_found_title: 'सत्यापन रिकॉर्ड नहीं मिला।',
@@ -736,6 +938,7 @@ export const TRANSLATIONS = {
       title: 'साइलेज गुणवत्ता विश्लेषिकी और सारांश',
       subtitle: 'फार्म-स्तरीय गुणवत्ता रुझान, नमी वितरण और बंकर स्वास्थ्य अवलोकन।',
       export_csv: 'CSV निर्यात करें',
+      export_alert: 'फार्म साइलेज एनालिटिक्स रिपोर्ट (.CSV) निर्यात की जा रही है...',
       total_tests: 'कुल परीक्षण',
       avg_quality_index: 'औसत गुणवत्ता सूचकांक',
       avg_moisture: 'औसत नमी',
@@ -744,7 +947,11 @@ export const TRANSLATIONS = {
       distribution_sub: 'इष्टतम, स्वीकार्य या उच्च जोखिम वाले संरक्षण मानकों को पूरा करने वाले परीक्षण किए गए साइलेज का अनुपात।',
       storage_status: 'बंकर और लॉट स्वास्थ्य स्थिति',
       storage_sub: 'इस परीक्षण चक्र के दौरान मूल्यांकित भंडारण इकाइयों का सारांश।',
-      batches: 'बैच'
+      batches: 'बैच',
+      score: 'स्कोर',
+      grade_a_desc: 'उत्कृष्ट लैक्टिक किण्वन, दुधारू पशुओं के लिए तैयार।',
+      grade_b_desc: 'हल्की एरोबिक गर्मी या नमी भिन्नता। बंकर की सतह पर नजर रखें।',
+      grade_c_desc: 'खराबी का अधिक जोखिम। उच्च जोखिम वाले पशुओं को खिलाने से बचें।'
     },
     how_it_works: {
       title: 'FeedCheck AI कैसे काम करता है',

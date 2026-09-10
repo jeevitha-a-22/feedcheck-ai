@@ -53,7 +53,7 @@ export const VisualIndicators = ({
           {visualIndicators.length > 0 ? (
             visualIndicators.map((indicator, idx) => {
               const isString = typeof indicator === 'string';
-              const label = isString ? `Visual Observation #${idx + 1}` : indicator.label || `Trait #${idx + 1}`;
+              const label = isString ? `${t('visual_indicators.observation_prefix', 'Visual Observation')} #${idx + 1}` : indicator.label || `${t('visual_indicators.trait_prefix', 'Trait')} #${idx + 1}`;
               const value = isString ? indicator : indicator.value;
               const status = isString
                 ? indicator.toLowerCase().includes('discolor') || indicator.toLowerCase().includes('mold') || indicator.toLowerCase().includes('uneven')
